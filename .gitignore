@@ -1,0 +1,8 @@
+# Environment variables
+.env
+
+# Build
+build/
+
+# Dependency directories
+node_modules/
