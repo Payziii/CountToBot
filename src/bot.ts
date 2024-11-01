@@ -25,5 +25,8 @@ bot.use(conversations());
 
 // Creating a start command
 bot.command("start", async (ctx) => {
-    ctx.reply(`This is test command ;)\nGood luck!`);
+    ctx.reply(ctx.t('start-command'));
 });
+
+// Starting a bot
+bot.start();
