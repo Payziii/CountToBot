@@ -8,6 +8,8 @@ import {
 } from "@grammyjs/conversations";
 import { I18n, I18nFlavor } from "@grammyjs/i18n";
 
+import { count } from './cmds/count.js'
+
 // Creating a bot
 type MyContext = Context & ConversationFlavor & I18nFlavor;
 const bot = new Bot<MyContext>(process.env.TELEGRAM_BOT_TOKEN);
@@ -22,6 +24,7 @@ const i18n = new I18n<MyContext>({
 bot.use(session({ initial: () => ({}) }));
 bot.use(i18n);
 bot.use(conversations());
+bot.use(createConversation(count));
 
 // Creating a start command
 bot.command("start", async (ctx) => {
@@ -41,7 +44,7 @@ bot.on("callback_query:data", async (ctx) => {
     let data = ctx.callbackQuery.data;
 
     if (data === 'count') {
-        ctx.reply("test button")
+        await ctx.conversation.enter("count");
     }
 })
 
